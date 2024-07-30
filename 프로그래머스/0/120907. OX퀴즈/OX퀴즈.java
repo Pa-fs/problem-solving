@@ -9,20 +9,10 @@ class Solution {
             String op = split[1];
             int b = Integer.parseInt(split[2]);
             int c = Integer.parseInt(split[4]);
+            int res = 0;
             
-            if(op.equals("+")) {
-                if(a + b == c) {
-                    answer[pos++] = "O";
-                } else {
-                    answer[pos++] = "X";
-                }
-            } else {
-                if(a - b == c) {
-                    answer[pos++] = "O";
-                } else {
-                    answer[pos++] = "X";
-                }
-            }
+            res = op.equals("+") ? a + b : a - b;
+            answer[pos++] = res == c ? "O" : "X";
         }
         return answer;
     }
