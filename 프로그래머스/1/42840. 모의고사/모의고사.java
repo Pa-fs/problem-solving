@@ -1,38 +1,32 @@
 import java.util.*;
+
 class Solution {
     public int[] solution(int[] answers) {
-        int[] answer = {};
+        int[][] giveUp = {
+            {1,2,3,4,5,},
+            {2,1,2,3,2,4,2,5},
+            {3,3,1,1,2,2,4,4,5,5,}
+        };
         
-        int[] person = {0, 0, 0};
-        
-        int[] a = {1, 2, 3, 4, 5};
-        int[] b = {2, 1, 2, 3, 2, 4, 2, 5};
-        int[] c = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
+        int[] scores = new int[3];
         
         for(int i = 0; i < answers.length; i++) {
-            if(answers[i] == a[i % 5]) person[0]++;
-            if(answers[i] == b[i % 8]) person[1]++;
-            if(answers[i] == c[i % 10]) person[2]++;
-        }
-        
-        int max = 0;
-        for(int i = 0; i < person.length; i++) {
-            if(max < person[i]) {
-                max = person[i];
+            for(int j = 0; j < giveUp.length; j++) {
+                if(answers[i] == giveUp[j][i % giveUp[j].length]) {
+                    scores[j]++;
+                }
             }
         }
         
-        ArrayList<Integer> list = new ArrayList<>();
-        for(int i = 0; i < person.length; i++) {
-            if(max == person[i]) {
-                list.add(i + 1);
+        int maxScore = Arrays.stream(scores).max().getAsInt();
+        
+        ArrayList<Integer> answer = new ArrayList<>();
+        
+        for(int i = 0; i < scores.length; i++) {
+            if(scores[i] == maxScore) {
+                answer.add(i + 1);
             }
         }
-        
-        answer = new int[list.size()];
-        for(int i = 0; i < answer.length; i++) {
-            answer[i] = list.get(i);
-        }
-        return answer;
+        return answer.stream().mapToInt(Integer::intValue).toArray();
     }
 }
