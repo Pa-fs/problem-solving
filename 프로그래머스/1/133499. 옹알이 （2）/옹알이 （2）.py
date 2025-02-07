@@ -6,9 +6,9 @@ def solution(babbling):
         for banned_word in banned_words:
             actual_word = actual_word.replace(banned_word, "x")
         for word in words: 
-            actual_word = actual_word.replace(word, "0")
+            actual_word = actual_word.replace(word, " ")
         
-        if actual_word.isdigit():
+        if len(actual_word.strip()) == 0:
             answer = answer + 1
         
     return answer
