@@ -1,17 +1,19 @@
 def solution(N, stages):
-    c = [0] * (N + 2) 
+    # 도전자
+    ch = [0] * (N + 2)
     for stage in stages:
-        c[stage] += 1
+        ch[stage] += 1
     
-    fails = {}
+    # 길이
     total = len(stages)
+    fails = {}
     
     for stage in range(1, N + 1):
-        if c[stage] == 0:
+        if ch[stage] == 0:
             fails[stage] = 0
         else:
-            fails[stage] = c[stage] / total
-            total = total - c[stage]
+            fails[stage] = ch[stage] / total
+        total -= ch[stage]
     
-    res = sorted(fails, key=lambda x: fails[x], reverse=True)
-    return res
+    fails = sorted(fails, key=lambda x: fails[x], reverse=True)
+    return fails
