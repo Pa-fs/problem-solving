@@ -1,5 +1,5 @@
 res = 0
-def go(nums, chk, n, s, lev, sum, tmp_lst, start):
+def go(nums, chk, n, s, sum, tmp_lst, start):
     global res
     if len(tmp_lst) > n:
         return
@@ -15,7 +15,7 @@ def go(nums, chk, n, s, lev, sum, tmp_lst, start):
 
         chk[i] = True
         tmp_lst.append(nums[i])
-        go(nums, chk, n, s, lev + 1, sum + nums[i], tmp_lst, i + 1)
+        go(nums, chk, n, s, sum + nums[i], tmp_lst, i + 1)
         tmp_lst.pop()
         chk[i] = False
 
@@ -26,6 +26,6 @@ def solution():
 
     chk = [False] * n
 
-    go(nums, chk, n, s, 0, 0,[], 0)
+    go(nums, chk, n, s, 0,[], 0)
     print(res)
 solution()
