@@ -6,8 +6,7 @@ def go(kit, n, k, chk, lev, w):
         return
 
     if lev == n:
-        if w >= 500:
-            res += 1
+        res += 1
         return
 
     for i in range(n):
@@ -17,9 +16,6 @@ def go(kit, n, k, chk, lev, w):
         chk[i] = True
         go(kit, n, k, chk, lev + 1, w + kit[i] - k)
         chk[i] = False
-
-
-
 
 def solution():
     n, k = map(int, input().split())
