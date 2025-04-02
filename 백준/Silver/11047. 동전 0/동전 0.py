@@ -4,11 +4,8 @@ def Solution():
     global n, k
     cnt = 0
     for i in range(n - 1, -1, -1):
-        # while k - coins[i] >= 0:
-        #     k -= coins[i]
-        #     cnt += 1
         if k >= coins[i]:
             cnt = cnt + (k // coins[i])
-            k = k - ((k // coins[i]) * coins[i])
+            k = k % coins[i]
     print(cnt)
 Solution()
