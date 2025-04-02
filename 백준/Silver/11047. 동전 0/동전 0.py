@@ -1,0 +1,14 @@
+n, k = map(int, input().split())
+coins = [int(input()) for _ in range(n)]
+def Solution():
+    global n, k
+    cnt = 0
+    for i in range(n - 1, -1, -1):
+        # while k - coins[i] >= 0:
+        #     k -= coins[i]
+        #     cnt += 1
+        if k >= coins[i]:
+            cnt = cnt + (k // coins[i])
+            k = k - ((k // coins[i]) * coins[i])
+    print(cnt)
+Solution()
